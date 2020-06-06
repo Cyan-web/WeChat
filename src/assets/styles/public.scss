@@ -1,0 +1,216 @@
+//全局通用的class
+
+// float
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+// pointer
+.pointer {
+    cursor: pointer;
+}
+
+// disabled
+.disabled {
+    cursor: not-allowed;
+}
+
+// underline
+.underline {
+    text-decoration: underline;
+}
+
+// delete
+.delete {
+    text-decoration: line-through;
+}
+
+// border-box
+.border-box {
+    box-sizing: border-box;
+}
+
+// center-box
+.center-box {
+    @extend .d-flex;
+    @extend .justify-center;
+    @extend .align-center;
+}
+
+// position-center
+.position-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// 超出隐藏
+.overflow-hidden {
+    overflow: hidden;
+}
+
+// 文本超出省略
+.text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// 隐藏滚动条
+.hide-scroll {
+    -ms-overflow-style: none;
+    overflow: -moz-scrollbars-none;
+
+    &::-webkit-scrollbar {
+        width: 0 !important
+    }
+}
+
+// 细长滚动条
+.slender-scroll {
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+        border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+    }
+}
+
+// margin padding
+@for $spacer from 1 through 6 {
+    // margin
+    .mt-n#{$spacer} {
+        margin-top: $spacer * 5px;
+    }
+
+    .mb-n#{$spacer} {
+        margin-bottom: $spacer * 5px;
+    }
+
+    .ml-n#{$spacer} {
+        margin-left: $spacer * 5px;
+    }
+
+    .mr-n#{$spacer} {
+        margin-right: $spacer * 5px;
+    }
+
+    .mx-n#{$spacer} {
+        margin-left: $spacer * 5px;
+        margin-right: $spacer * 5px;
+    }
+
+    .my-n#{$spacer} {
+        margin-top: $spacer * 5px;
+        margin-bottom: $spacer * 5px;
+    }
+
+    .ma-n#{$spacer} {
+        margin: $spacer * 5px;
+    }
+
+    // padding
+    .pt-n#{$spacer} {
+        padding-top: $spacer * 5px;
+    }
+
+    .pb-n#{$spacer} {
+        padding-bottom: $spacer * 5px;
+    }
+
+    .pl-n#{$spacer} {
+        padding-left: $spacer * 5px;
+    }
+
+    .pr-n#{$spacer} {
+        padding-right: $spacer * 5px;
+    }
+
+    .px-n#{$spacer} {
+        padding-left: $spacer * 5px;
+        padding-right: $spacer * 5px;
+    }
+
+    .py-n#{$spacer} {
+        padding-top: $spacer * 5px;
+        padding-bottom: $spacer * 5px;
+    }
+
+    .pa-n#{$spacer} {
+        padding: $spacer * 5px;
+    }
+};
+
+// display
+$displays: block, inline-block, flex, inline-flex, inline;
+
+@each $display in $displays {
+    .d-#{$display} {
+        display: $display;
+    }
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+// flex-redirect
+$flex: row, row-reverse, column, column-reverse;
+
+@each $direction in $flex {
+    .flex-#{$direction} {
+        flex-direction: $direction;
+    }
+}
+
+// flex justify-content
+$justify-content: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        space-between: space-between,
+        space-around: space-around
+);
+
+@each $justify, $justifyVal in $justify-content {
+    .justify-#{$justify} {
+        justify-content: $justifyVal;
+    }
+}
+
+// flex align-items
+$align-items: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+);
+
+@each $align, $alignVal in $align-items {
+    .align-#{$align} {
+        align-items: $alignVal;
+    }
+}
+
+// typography-align
+$text-align: left, center, right;
+
+@each $align in $text-align {
+    .text-align-#{$align} {
+        text-align: $align;
+    }
+}
+
+// font-size
+@for $size from 6 through 15 {
+    .fz-#{$size * 2} {
+        font-size: $size * 2px;
+    }
+}
