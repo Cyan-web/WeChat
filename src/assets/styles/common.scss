@@ -1,0 +1,7 @@
+* {
+    @extend .border-box;
+}
+
+.divider {
+    border-bottom: 1px solid $background_1;
+}

@@ -1,0 +1,55 @@
+.login {
+    width: 100%;
+    height: 100%;
+    background: url("https://res.wx.qq.com/a/wx_fed/webwx/res/static/img/2zrdI1g.jpg") no-repeat;
+    position: relative;
+}
+
+.login-form {
+    background: $white;
+    border-radius: 5px;
+}
+
+.login-form-group {
+    height: 34px;
+    display: flex;
+    align-items: center;
+
+    label {
+        white-space: nowrap;
+    }
+
+    input {
+        height: 34px;
+        line-height: 34px;
+        border: none;
+        outline: none;
+        transition: .35s ease;
+        background-image: linear-gradient($grey, $grey), linear-gradient($blue, $blue);
+        background-repeat: no-repeat;
+        background-size: 100% 1px, 0 2px;
+        background-position: bottom, bottom;
+
+        &:focus,
+        &:active {
+            background-size: 100% 1px, 100% 2px;
+        }
+    }
+}
+
+.login-form button[type="submit"] {
+    padding: 5px 15px;
+    margin: 15px auto 0;
+    display: block;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    background: $blue;
+    color: #fff;
+    cursor: pointer;
+
+    &:active {
+        opacity: .7;
+    }
+}
