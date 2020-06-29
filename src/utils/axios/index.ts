@@ -5,6 +5,6 @@ interface IFetchParams {
     params: any
 }
 
-export const fetch = ({ url, params }: IFetchParams) => {
+export const fetch = async <T>({ url, params }: IFetchParams): Promise<T> => {
     return axios.post(url, params)
 }

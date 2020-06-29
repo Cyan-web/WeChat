@@ -33,33 +33,35 @@ const FriendsHeader: FC<IFriendsHeader> = ({ activeType, changeType }) => {
 
     return (
         <div className="friendsHeader divider">
-            <div className="friendsHeader-operation d-flex align-center px-n2">
-                <div className="mx-n2 px-n2">好友</div>
+            <div className="friendHeader-base">
+                <div className="friendsHeader-operation d-flex align-center px-n2">
+                    <div className="mx-n2 px-n2">好友</div>
 
-                {
-                    friendsHeader.map(e => {
-                        const { title, type } = e
+                    {
+                        friendsHeader.map(e => {
+                            const { title, type } = e
 
-                        const classes = classNames('friendsHeader-operation-items mx-n2 px-n2 pointer', {
-                            active: activeType === type
+                            const classes = classNames('friendsHeader-operation-items mx-n2 px-n2 pointer', {
+                                active: activeType === type
+                            })
+
+                            const _onClick = () => { changeType(type) }
+
+                            return (
+                                <div
+                                    key={title}
+                                    className={classes}
+                                    onClick={_onClick}
+                                >
+                                    {title}
+                                </div>
+                            )
                         })
+                    }
 
-                        const _onClick = () => { changeType(type) }
-
-                        return (
-                            <div
-                                key={title}
-                                className={classes}
-                                onClick={_onClick}
-                            >
-                                {title}
-                            </div>
-                        )
-                    })
-                }
-
-                <div className="friendsHeader-operation-add mx-n2 px-n2 pointer" onClick={changeAddType}>
-                    添加好友
+                    <div className="friendsHeader-operation-add mx-n2 px-n2 pointer" onClick={changeAddType}>
+                        添加好友
+                    </div>
                 </div>
             </div>
         </div>

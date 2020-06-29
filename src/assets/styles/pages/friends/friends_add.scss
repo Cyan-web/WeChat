@@ -1,0 +1,39 @@
+.friendsAdd-container {
+    background: $color_2;
+    white-space: nowrap;
+
+    & > img {
+        margin: auto;
+    }
+}
+
+.friendsAdd {
+    color: $color_5;
+}
+
+.friendsAdd-search {
+    min-width: 300px;
+    height: 50px;
+    border: 1px solid $color_1;
+    border-radius: 5px;
+
+    input {
+        background: none;
+        outline: none;
+        border: none;
+        height: 100%;
+        color: $color_5;
+
+        @extend .flex-1;
+    }
+}
+
+.friendsAdd-searchResult-summary {
+    height: 40px;
+    line-height: 40px;
+}
+
+.friendsAdd-searchList {
+    height: calc(100% - 40px);
+    overflow: auto;
+}

@@ -1,0 +1,20 @@
+.button {
+    min-width: 46px;
+    height: 32px;
+    color: $white;
+    background: $button_primary;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+
+    @extend .px-n3;
+    @extend .fz-14;
+    @extend .d-flex;
+    @extend .align-center;
+    @extend .justify-center;
+    @extend .pointer;
+
+    &:hover {
+        background: $button_primary_hover;
+    }
+}

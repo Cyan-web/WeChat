@@ -1,7 +1,7 @@
 .friendListPanel {
     width: 240px;
     height: 100%;
-    background: $background_3;
+    background: $color_3;
     display: inline-flex;
     flex-direction: column;
 }
@@ -17,7 +17,7 @@
         height: 28px;
         padding: 0 6px;
         font-size: 14px;
-        background: $background_1;
+        background: $color_1;
         color: #72767d;
         outline: none;
         border: none;

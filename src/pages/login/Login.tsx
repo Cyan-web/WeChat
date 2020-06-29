@@ -21,7 +21,7 @@ const Login: FC<RouteComponentProps> = ({ history: { push } }) => {
         try {
             const res = await fetch({ url: '/login', params: form })
             store.dispatch({ type: SET_USER_INFO, payload: res })
-            push('/main')
+            push('/main/friends')
         } catch (e) {
             console.log(e)
         }

@@ -8,14 +8,18 @@ import Chat from './children/Chat'
 const Main: FC<RouteComponentProps> = ({ history: { replace } }) => {
     return (
         <div className="main">
-            <FriendListPanel/>
+            <div className="main-left">
+                <FriendListPanel/>
+            </div>
 
-            <Switch>
-                <Route path="/main/friends" component={Friends} />
-                <Route path="/main/chat" component={Chat} />
+            <div className="main-content flex-1 overflow-hidden">
+                <Switch>
+                    <Route path="/main/friends" component={Friends} />
+                    <Route path="/main/chat" component={Chat} />
 
-                <Redirect path="/main" to="/main/friends" exact />
-            </Switch>
+                    <Redirect path="/main" to="/main/friends" exact />
+                </Switch>
+            </div>
         </div>
     )
 }

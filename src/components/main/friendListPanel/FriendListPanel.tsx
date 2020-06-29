@@ -8,7 +8,6 @@ const FriendListPanel: FC = () => {
             <SearchHeader/>
 
             <div>
-                asdasdasd
             </div>
         </div>
     )

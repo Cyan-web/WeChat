@@ -6,7 +6,8 @@ import {
     OperationType_All,
     OperationType_Undetermined,
     OperationType_Blocking,
-    OperationType_Add
+    OperationType_Add,
+    OperationType_Online
 } from '../../../components/main/friends/operationTypes'
 
 const OnlineComp = lazy(() => import('../../../components/main/friends/Online'))
@@ -17,6 +18,8 @@ const AddComp = lazy(() => import('../../../components/main/friends/Add'))
 
 const WithLayLoad = (compType: OperationTypes) => {
     switch (compType) {
+        case OperationType_Online:
+            return <OnlineComp/>
         case OperationType_All:
             return <AllComp/>
         case OperationType_Undetermined:
@@ -31,10 +34,10 @@ const WithLayLoad = (compType: OperationTypes) => {
 }
 
 const Friends: FC = () => {
-    const [ operationType, setOperationType ] = useState<OperationTypes>('online')
+    const [ operationType, setOperationType ] = useState<OperationTypes>(OperationType_Add)
 
     return (
-        <div className="friends">
+        <div className="friends d-flex flex-column flex-1">
             <FriendsHeader activeType={operationType} changeType={setOperationType} />
 
             <Suspense fallback={null}>

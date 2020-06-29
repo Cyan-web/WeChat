@@ -1,14 +1,19 @@
 .friendsHeader {
     width: 100%;
     height: 48px;
-    background: $background_2;
+    background: $color_2;
+}
+
+.friendHeader-base {
+    position: relative;
 }
 
 .friendsHeader-operation {
     width: 100%;
-    height: 100%;
-    color: #b9bbbe;
+    height: 48px;
+    color: $color_4;
     font-size: 16px;
+    white-space: nowrap;
 
     .friendsHeader-operation-items {
         &.active,

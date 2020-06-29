@@ -4,27 +4,35 @@ interface IUserStore {
 
 /**
  * @interface IUserInfo 用户数据结构
- * @account 登录账号
+ * @extends ISearchUserInfo
  * @area 地区
- * @avatar 头像
  * @email 邮箱
- * @gender 性别
  * @mobile 手机号
- * @nickname 昵称
- * @online 在线状态
  * @password 密码
  * @sign 签名
  * */
-interface IUserInfo {
-    account: string
+interface IUserInfo extends ISearchUserInfo {
     area: string
-    avatar: string
     email: string
-    gender: string
-    id: number
     mobile: string
-    nickname: string
-    online: boolean
     password: string
     sign: string
+}
+
+/**
+ * @interface ISearchUserInfo 用户数据结构
+ * @account 登录账号
+ * @avatar 头像
+ * @gender 性别
+ * @nickname 昵称
+ * @online 在线状态
+ * @sign 签名
+ * */
+interface ISearchUserInfo {
+    account: string
+    id: number
+    nickname: string
+    online: boolean
+    gender: string
+    avatar: string
 }
