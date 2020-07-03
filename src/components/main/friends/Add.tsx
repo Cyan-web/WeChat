@@ -1,15 +1,16 @@
 import React, { FC, useState } from 'react'
 
 import Button from '../../public/Button'
-import UserCell from './UserCell'
-import { fetch } from '../../../utils/axios'
+import { UserCell } from '../../../container/user'
+import { api_searchFriend } from '../../../apis/friends'
+import { OperationType_Add } from './operationTypes'
 
 const Add: FC = () => {
     const [ search, setSearch ] = useState<string>('')
-    const [ searchResult, setSearchResult ] = useState<ISearchUserInfo[]>([])
+    const [ searchResult, setSearchResult ] = useState<ISearchUserInfoResponseData[]>([])
 
     const onSearch = async () => {
-        const res = await fetch<ISearchUserInfo[]>({ url: '/friends/search', params: { search } })
+        const res = await api_searchFriend({ search })
         setSearchResult(res)
     }
 
@@ -39,7 +40,7 @@ const Add: FC = () => {
 
                 <div className="friendsAdd-searchList slender-scroll">
                     {
-                        searchResult.map(e => <UserCell key={e.id} {...e} />)
+                        searchResult.map(e => <UserCell key={e.id} {...e} type={OperationType_Add} />)
                     }
                 </div>
             </div>

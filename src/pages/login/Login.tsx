@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 
-import store from '../../store'
+import { store } from '../../store'
 import { SET_USER_INFO } from '../../store/user/user.types'
 import { InputChangeHandler, FormSubmitHandler } from '../../modules/handler/handler'
 import { fetch } from '../../utils/axios'
@@ -19,8 +19,8 @@ const Login: FC<RouteComponentProps> = ({ history: { push } }) => {
         event.preventDefault()
 
         try {
-            const res = await fetch({ url: '/login', params: form })
-            store.dispatch({ type: SET_USER_INFO, payload: res })
+            const userInfo = await fetch<IUserInfo>({ url: '/login', params: form })
+            store.dispatch({ type: SET_USER_INFO, payload: { userInfo } })
             push('/main/friends')
         } catch (e) {
             console.log(e)

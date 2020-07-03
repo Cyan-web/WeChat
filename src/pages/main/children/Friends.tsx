@@ -2,7 +2,6 @@ import React, { FC, useState, lazy, Suspense } from 'react'
 
 import FriendsHeader from '../../../components/main/friends/FriendsHeader'
 import {
-    OperationTypes,
     OperationType_All,
     OperationType_Undetermined,
     OperationType_Blocking,

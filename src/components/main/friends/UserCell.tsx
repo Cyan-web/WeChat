@@ -1,17 +1,61 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import IconButton from '@material-ui/core/IconButton'
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import AddCircleIcon from '@material-ui/icons/AddCircle'
+import Tooltip from '@material-ui/core/Tooltip'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 
 import Avatar from '../../public/Avatar'
+import { api_addFriend } from '../../../apis/friends'
 
-const UserCell: FC<ISearchUserInfo> = ({
+import { ButtonClickHandler } from '../../../modules/handler/handler'
+import { OverridableComponent } from '@material-ui/core/OverridableComponent'
+import { SvgIconTypeMap } from '@material-ui/core/SvgIcon/SvgIcon'
+
+interface TooltipIconProps {
+    tip: string
+    Icon: OverridableComponent<SvgIconTypeMap>
+    onClick?: ButtonClickHandler
+}
+
+const TooltipIcon: FC<TooltipIconProps> = ({ tip, Icon, onClick }) => {
+    return (
+        <Tooltip title={tip} placement="top" arrow>
+            <IconButton onClick={onClick}>
+                <Icon fontSize="small" />
+            </IconButton>
+        </Tooltip>
+    )
+}
+
+interface IUserCellProps extends ISearchUserInfoResponseData {
+    type: OperationTypes
+    userInfo: IUserInfo
+}
+
+const UserCell: FC<IUserCellProps> = ({
+    type,
     id,
     avatar,
     account,
     nickname,
-    online
+    online,
+    userInfo,
+    waitReply
 }) => {
+    const addFriend = async () => {
+        await api_addFriend({ id: userInfo.id, addId: id })
+        console.log('添加好友成功, 等待对方同意')
+    }
+
+    const [ anchorEl, setAnchorEl ] = useState<HTMLElement | null>(null)
+
+    const moreMenuOpen: ButtonClickHandler = e => { setAnchorEl(e.currentTarget) }
+
+    const moreMenuClose = () => { setAnchorEl(null) }
+
     const status = online ? '在线' : '离线'
 
     return (
@@ -33,12 +77,44 @@ const UserCell: FC<ISearchUserInfo> = ({
             </div>
 
             <div className="userCell-operation d-flex align-center ">
-                <IconButton>
-                    <ChatBubbleIcon fontSize="small" />
-                </IconButton>
-                <IconButton>
-                    <MoreVertIcon fontSize="small" />
-                </IconButton>
+                {
+                    type
+                        ? (
+                            <TooltipIcon
+                                tip="添加好友"
+                                Icon={AddCircleIcon}
+                                onClick={addFriend}
+                            />
+                        )
+                        : (
+                            <>
+                                <TooltipIcon
+                                    tip="消息"
+                                    Icon={ChatBubbleIcon}
+                                />
+
+                                <TooltipIcon
+                                    tip="更多"
+                                    Icon={MoreVertIcon}
+                                    onClick={moreMenuOpen}
+                                />
+
+                                <Menu
+                                    keepMounted
+                                    anchorEl={anchorEl}
+                                    getContentAnchorEl={null}
+                                    anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'center',
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={moreMenuClose}
+                                >
+                                    <MenuItem>添加好友</MenuItem>
+                                </Menu>
+                            </>
+                        )
+                }
             </div>
         </div>
     )

@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import classNames from 'classnames'
 
 import {
-    OperationTypes,
     ChangeOperationType,
     OperationType_Online,
     OperationType_All,
