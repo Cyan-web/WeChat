@@ -1,9 +1,26 @@
 import React, { FC, useState } from 'react'
+import AddCircleIcon from '@material-ui/icons/AddCircle'
 
 import Button from '../../public/Button'
-import { UserCell } from '../../../container/user'
-import { api_searchFriend } from '../../../apis/friends'
+import UserCell, { TooltipIcon } from './UserCell'
+import { api_addFriend, api_searchFriend } from '../../../apis/friends'
 import { OperationType_Add } from './operationTypes'
+
+const AddOperation: FC<{ id: number }> = ({ id: addId }) => {
+    const addFriend = async () => {
+        await api_addFriend({ addId })
+        console.log('添加好友成功, 等待对方同意')
+    }
+    return (
+        <>
+            <TooltipIcon
+                tip="添加好友"
+                Icon={AddCircleIcon}
+                onClick={addFriend}
+            />
+        </>
+    )
+}
 
 const Add: FC = () => {
     const [ search, setSearch ] = useState<string>('')
@@ -15,7 +32,7 @@ const Add: FC = () => {
     }
 
     return (
-        <div className="friendsAdd-container overflow-hidden flex-1 d-flex flex-column">
+        <div className="add-container overflow-hidden flex-1 d-flex flex-column">
             <div className="friendsAdd divider pa-n6">
                 <h5 className="fz-16">添加好友</h5>
 
@@ -40,7 +57,15 @@ const Add: FC = () => {
 
                 <div className="friendsAdd-searchList slender-scroll">
                     {
-                        searchResult.map(e => <UserCell key={e.id} {...e} type={OperationType_Add} />)
+                        searchResult.map(e => (
+                            <UserCell
+                                type={OperationType_Add}
+                                key={e.id}
+                                {...e}
+                            >
+                                <AddOperation id={e.id} />
+                            </UserCell>
+                        ))
                     }
                 </div>
             </div>

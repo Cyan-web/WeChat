@@ -1,10 +1,15 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
 
+import { session } from '../storage'
+
 const fetchErr = (error: AxiosError) => {
     return Promise.reject(error)
 }
 
 axios.interceptors.request.use((config: AxiosRequestConfig) => {
+    const token = session.get('token')
+    if (token) config.headers.Authorization = token
+
     return config
 }, fetchErr)
 

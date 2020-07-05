@@ -15,7 +15,7 @@ const UndeterminedComp = lazy(() => import('../../../components/main/friends/Und
 const BlockingComp = lazy(() => import('../../../components/main/friends/Blocking'))
 const AddComp = lazy(() => import('../../../components/main/friends/Add'))
 
-const WithLayLoad = (compType: OperationTypes) => {
+const WithLazyLoad = (compType: OperationTypes) => {
     switch (compType) {
         case OperationType_Online:
             return <OnlineComp/>
@@ -40,7 +40,7 @@ const Friends: FC = () => {
             <FriendsHeader activeType={operationType} changeType={setOperationType} />
 
             <Suspense fallback={null}>
-                {WithLayLoad(operationType)}
+                {WithLazyLoad(operationType)}
             </Suspense>
         </div>
     )

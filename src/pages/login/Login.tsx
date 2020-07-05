@@ -5,6 +5,7 @@ import { store } from '../../store'
 import { SET_USER_INFO } from '../../store/user/user.types'
 import { InputChangeHandler, FormSubmitHandler } from '../../modules/handler/handler'
 import { fetch } from '../../utils/axios'
+import { session } from '../../utils/storage'
 
 const Login: FC<RouteComponentProps> = ({ history: { push } }) => {
     const [ form, setForm ] = useState<IApiLoginParams>({ account: '', password: '' })
@@ -19,8 +20,9 @@ const Login: FC<RouteComponentProps> = ({ history: { push } }) => {
         event.preventDefault()
 
         try {
-            const userInfo = await fetch<IUserInfo>({ url: '/login', params: form })
+            const { userInfo, token } = await fetch<ILoginResponseData>({ url: '/login', params: form })
             store.dispatch({ type: SET_USER_INFO, payload: { userInfo } })
+            session.save({ token })
             push('/main/friends')
         } catch (e) {
             console.log(e)

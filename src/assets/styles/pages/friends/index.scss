@@ -1,1 +1,17 @@
-@import "friends_add";
+@import "add";
+
+.add-container,
+.undetermined-container,
+.all-container {
+    background: $color_2;
+}
+
+.friend-tip {
+    color: $color_4;
+    font-weight: bold;
+
+    @extend .fz-12;
+    @extend .mx-n6;
+    @extend .my-n2;
+    @extend .px-n2;
+}

@@ -7,3 +7,8 @@ interface IApiLoginParams {
     account: string
     password: string
 }
+
+interface ILoginResponseData {
+    userInfo: IUserInfo
+    token: string
+}

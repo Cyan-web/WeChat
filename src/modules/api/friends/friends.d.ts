@@ -8,10 +8,8 @@ interface ISearchUserInfoResponseData extends IUseBase {
 
 /**
  * @interface IAddFriendApiParams 添加好友时传递的参数
- * @id 用户自己 id
  * @addId 需要添加好友的 id
  * */
 interface IAddFriendApiParams {
-    id: number
     addId: number
 }
