@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Route, Redirect, Switch, RouteComponentProps } from 'react-router-dom'
 
-import FriendListPanel from '../../components/main/friendListPanel/FriendListPanel'
+import ChatList from '../../components/main/friendListPanel/ChatList'
 import Friends from './children/Friends'
 import Chat from './children/Chat'
 
@@ -9,7 +9,7 @@ const Main: FC<RouteComponentProps> = ({ history: { replace } }) => {
     return (
         <div className="main">
             <div className="main-left">
-                <FriendListPanel/>
+                <ChatList/>
             </div>
 
             <div className="main-content flex-1 overflow-hidden">

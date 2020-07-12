@@ -4,20 +4,19 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 import user from './user/user.store'
+import friends from './friends/friends.store'
 
 const rootPersistConfig = {
     key: 'root',
     storage,
-    backList: [ 'user' ]
+    backList: [ 'user', 'friends' ]
 }
 
-const userPersistConfig = {
-    key: 'user',
-    storage
-}
+const createPersistConfig = (key: string) => ({ key, storage })
 
 const reducer = combineReducers({
-    user: persistReducer(userPersistConfig, user)
+    user: persistReducer(createPersistConfig('user'), user),
+    friends: persistReducer(createPersistConfig('friends'), friends),
 })
 
 const persistedReducer = persistReducer(rootPersistConfig, reducer)

@@ -9,7 +9,8 @@ const userInfo: IUserInfo = {
     nickname: '',
     online: false,
     password: '',
-    sign: ''
+    sign: '',
+    token: ''
 }
 
 export default {

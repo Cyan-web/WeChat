@@ -2,11 +2,12 @@
 
 .add-container,
 .undetermined-container,
-.all-container {
+.all-container,
+.friendsCommon {
     background: $color_2;
 }
 
-.friend-tip {
+.friendsCommon-tip {
     color: $color_4;
     font-weight: bold;
 

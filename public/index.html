@@ -41,11 +41,13 @@
     -->
     <script src="%PUBLIC_URL%/js/socket.io.js"></script>
     <script>
-      const socket = io('http://localhost:9090');
-      // const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-      // if (userInfo) {
-      //   socket.emit('update', userInfo.user_id);
-      // }
+      const tokenStorage = sessionStorage.getItem('token')
+      let token = ''
+      if (tokenStorage) {
+        const { val } = JSON.parse(tokenStorage)
+        token = val
+      }
+      const socket = io(`http://localhost:9090?token=${token}`)
     </script>
   </body>
 </html>

@@ -28,6 +28,7 @@ interface IUseBase {
  * @mobile 手机号
  * @password 密码
  * @sign 签名
+ * @token
  * */
 interface IUserInfo extends IUseBase {
     area: string
@@ -35,4 +36,5 @@ interface IUserInfo extends IUseBase {
     mobile: string
     password: string
     sign: string
+    token: string
 }

@@ -20,9 +20,9 @@ const Login: FC<RouteComponentProps> = ({ history: { push } }) => {
         event.preventDefault()
 
         try {
-            const { userInfo, token } = await fetch<ILoginResponseData>({ url: '/login', params: form })
+            const userInfo = await fetch<ILoginResponseData>({ url: '/login', params: form })
             store.dispatch({ type: SET_USER_INFO, payload: { userInfo } })
-            session.save({ token })
+            session.save({ token: userInfo.token })
             push('/main/friends')
         } catch (e) {
             console.log(e)

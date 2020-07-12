@@ -5,7 +5,7 @@ import { SET_USER_INFO } from './user.types'
 
 const userStore: IUserStore = userInitState
 
-export default (state: IUserStore = userStore, action: AnyAction) => {
+export default (state = userStore, action: AnyAction) => {
     switch (action.type) {
         case SET_USER_INFO:
             return { ...state, ...action.payload }

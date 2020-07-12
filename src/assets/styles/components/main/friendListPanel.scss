@@ -1,4 +1,4 @@
-.friendListPanel {
+.chatList {
     width: 240px;
     height: 100%;
     background: $color_3;
@@ -6,7 +6,7 @@
     flex-direction: column;
 }
 
-.friendListPanel-searchHeader {
+.chatList-searchHeader {
     height: 48px;
     padding: 0 10px;
     display: flex;

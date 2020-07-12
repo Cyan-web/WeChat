@@ -9,26 +9,27 @@ import {
     OperationType_Online
 } from '../../../components/main/friends/operationTypes'
 
-const OnlineComp = lazy(() => import('../../../components/main/friends/Online'))
-const AllComp = lazy(() => import('../../../components/main/friends/All'))
-const UndeterminedComp = lazy(() => import('../../../components/main/friends/Undetermined'))
+import FriendsCommon from '../../../container/friends'
+// const OnlineComp = lazy(() => import('../../../components/main/friends/Online'))
+// const AllComp = lazy(() => import('../../../components/main/friends/All'))
+// const UndeterminedComp = lazy(() => import('../../../components/main/friends/Undetermined'))
 const BlockingComp = lazy(() => import('../../../components/main/friends/Blocking'))
 const AddComp = lazy(() => import('../../../components/main/friends/Add'))
 
 const WithLazyLoad = (compType: OperationTypes) => {
     switch (compType) {
         case OperationType_Online:
-            return <OnlineComp/>
+            return <FriendsCommon type={OperationType_Online} />
         case OperationType_All:
-            return <AllComp/>
+            return <FriendsCommon type={OperationType_All} />
         case OperationType_Undetermined:
-            return <UndeterminedComp/>
+            return <FriendsCommon type={OperationType_Undetermined} />
         case OperationType_Blocking:
             return <BlockingComp/>
         case OperationType_Add:
             return <AddComp/>
         default:
-            return <OnlineComp/>
+            return <FriendsCommon type={OperationType_Online} />
     }
 }
 

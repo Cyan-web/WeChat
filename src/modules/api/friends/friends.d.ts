@@ -1,9 +1,11 @@
 /**
  * @interface ISearchUserInfoResponseData 查询好友返回的数据
  * @waitReply 是否等待被添加好友
+ * @blocking 是否被屏蔽
  * */
 interface ISearchUserInfoResponseData extends IUseBase {
     waitReply: boolean
+    blocking: boolean
 }
 
 /**

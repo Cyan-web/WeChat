@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import SearchHeader from './SearchHeader'
 
-const FriendListPanel: FC = () => {
+const ChatList: FC = () => {
     return (
         <div className="friendListPanel">
             <SearchHeader/>
@@ -13,4 +13,4 @@ const FriendListPanel: FC = () => {
     )
 }
 
-export default FriendListPanel
+export default ChatList
