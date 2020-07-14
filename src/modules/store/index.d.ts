@@ -1,6 +1,7 @@
 interface IStore {
     user: IUserStore
     friends: IFriendsStore
+    chat: IChatStore
 }
 
-type DispatchHandler = () => void
+type IDispatchHandler = () => void

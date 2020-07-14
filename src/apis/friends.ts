@@ -20,7 +20,7 @@ export const api_agreeAddFriend: Api_undetermined = (params) => fetch({ url: API
 export const api_refuseAddFriend: Api_undetermined = (params) => fetch({ url: API_BASE_FRIEND + '/refuse', params })
 
 // 所有好友
-export const api_allFriends = () => fetch<ISearchUserInfoResponseData[]>({ url: API_BASE_FRIEND + '/all', method: 'get' })
+export const api_allFriends = () => fetch<IUserBase[]>({ url: API_BASE_FRIEND + '/all', method: 'get' })
 
 // 在线列表
 // export const api_onlineFriends = () => fetch<ISearchUserInfoResponseData[]>({ url: API_BASE_FRIEND + '/online', method: 'get' })

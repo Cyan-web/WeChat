@@ -3,7 +3,7 @@ interface IUserStore {
 }
 
 /**
- * @interface IUseBase 用户对象接口基本值
+ * @interface IUserBase 用户对象接口基本值
  * @account 登录账号
  * @avatar 头像
  * @gender 性别
@@ -11,7 +11,7 @@ interface IUserStore {
  * @online 在线状态
  * @sign 签名
  * */
-interface IUseBase {
+interface IUserBase {
     account: string
     id: number
     nickname: string
@@ -30,7 +30,7 @@ interface IUseBase {
  * @sign 签名
  * @token
  * */
-interface IUserInfo extends IUseBase {
+interface IUserInfo extends IUserBase {
     area: string
     email: string
     mobile: string

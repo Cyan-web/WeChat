@@ -1,0 +1,28 @@
+.chatInputBg {
+    background: $color_3;
+
+    @extend .pa-n3;
+}
+
+.chatInput {
+    height: 44px;
+    line-height: 44px;
+    background: $color_2;
+    border-radius: 5px;
+
+    @extend .d-flex;
+    @extend .align-center;
+    @extend .px-n2;
+
+    input {
+        background: none;
+        outline: none;
+        border: none;
+        padding: 0;
+        height: 100%;
+        line-height: 44px;
+        color: $color_4;
+
+        @extend .flex-1;
+    }
+}

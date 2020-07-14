@@ -1,31 +1,28 @@
 import React, { FC, useState, lazy, Suspense } from 'react'
 
-import FriendsHeader from '../../../components/main/friends/FriendsHeader'
+import FriendsHeader from '../../../components/friends/FriendsHeader'
 import {
     OperationType_All,
     OperationType_Undetermined,
     OperationType_Blocking,
     OperationType_Add,
     OperationType_Online
-} from '../../../components/main/friends/operationTypes'
+} from '../../../components/friends/operationTypes'
 
 import FriendsCommon from '../../../container/friends'
-// const OnlineComp = lazy(() => import('../../../components/main/friends/Online'))
-// const AllComp = lazy(() => import('../../../components/main/friends/All'))
-// const UndeterminedComp = lazy(() => import('../../../components/main/friends/Undetermined'))
-const BlockingComp = lazy(() => import('../../../components/main/friends/Blocking'))
-const AddComp = lazy(() => import('../../../components/main/friends/Add'))
+// const OnlineComp = lazy(() => import('../../../components/chat/friends/Online'))
+// const AllComp = lazy(() => import('../../../components/chat/friends/All'))
+// const UndeterminedComp = lazy(() => import('../../../components/chat/friends/Undetermined'))
+// const BlockingComp = lazy(() => import('../../../components/chat/friends/Blocking'))
+const AddComp = lazy(() => import('../../../components/friends/page/Add'))
 
 const WithLazyLoad = (compType: OperationTypes) => {
     switch (compType) {
         case OperationType_Online:
-            return <FriendsCommon type={OperationType_Online} />
         case OperationType_All:
-            return <FriendsCommon type={OperationType_All} />
         case OperationType_Undetermined:
-            return <FriendsCommon type={OperationType_Undetermined} />
         case OperationType_Blocking:
-            return <BlockingComp/>
+            return <FriendsCommon type={compType} />
         case OperationType_Add:
             return <AddComp/>
         default:
@@ -34,7 +31,7 @@ const WithLazyLoad = (compType: OperationTypes) => {
 }
 
 const Friends: FC = () => {
-    const [ operationType, setOperationType ] = useState<OperationTypes>(OperationType_Add)
+    const [ operationType, setOperationType ] = useState<OperationTypes>(OperationType_Online)
 
     return (
         <div className="friends d-flex flex-column flex-1">

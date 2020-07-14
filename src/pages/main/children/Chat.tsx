@@ -1,16 +1,17 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
+
+import ChatHeader from '../../../components/chat/ChatHeader'
+import ChatContainer from '../../../components/chat/chatMain/ChatContainer'
+import { ChatInput } from '../../../container/chat'
 
 const Chat: FC = () => {
-    const [ input, setInput ] = useState('')
-
     return (
-        <div>
-            聊天
-            <input
-                type="text"
-                value={input}
-                onChange={ele => { setInput(ele.target.value) }}
-            />
+        <div className="chat d-flex flex-column flex-1">
+            <ChatHeader/>
+
+            <ChatContainer/>
+
+            <ChatInput/>
         </div>
     )
 }

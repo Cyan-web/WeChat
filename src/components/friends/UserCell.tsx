@@ -1,14 +1,10 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import IconButton from '@material-ui/core/IconButton'
-import ChatBubbleIcon from '@material-ui/icons/ChatBubble'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Tooltip from '@material-ui/core/Tooltip'
-import Menu from '@material-ui/core/Menu'
-import MenuItem from '@material-ui/core/MenuItem'
 
-import Avatar from '../../public/Avatar'
+import Avatar from '../public/Avatar'
 
-import { ButtonClickHandler } from '../../../modules/handler/handler'
+import { ButtonClickHandler } from '../../modules/handler/handler'
 import { OverridableComponent } from '@material-ui/core/OverridableComponent'
 import { SvgIconTypeMap } from '@material-ui/core/SvgIcon/SvgIcon'
 
@@ -28,45 +24,10 @@ export const TooltipIcon: FC<TooltipIconProps> = ({ tip, Icon, onClick }) => {
     )
 }
 
-export const NormalOperation: FC<{ id: number }> = ({ id }) => {
-    const [ anchorEl, setAnchorEl ] = useState<HTMLElement | null>(null)
-
-    const moreMenuOpen: ButtonClickHandler = e => { setAnchorEl(e.currentTarget) }
-
-    const moreMenuClose = () => { setAnchorEl(null) }
-
-    return (
-        <>
-            <TooltipIcon
-                tip="消息"
-                Icon={ChatBubbleIcon}
-            />
-
-            <TooltipIcon
-                tip="更多"
-                Icon={MoreVertIcon}
-                onClick={moreMenuOpen}
-            />
-
-            <Menu
-                keepMounted
-                anchorEl={anchorEl}
-                getContentAnchorEl={null}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={moreMenuClose}
-            >
-                <MenuItem>添加好友</MenuItem>
-            </Menu>
-        </>
-    )
-}
-
-interface IUserCellProps extends ISearchUserInfoResponseData {
+interface IUserCellProps extends IUserBase {
     type: OperationTypes
+    waitReply?: boolean
+    blocking?: boolean
 }
 
 const UserCell: FC<IUserCellProps> = ({
@@ -76,7 +37,6 @@ const UserCell: FC<IUserCellProps> = ({
     account,
     nickname,
     online,
-    waitReply,
     children
 }) => {
     const status = online ? '在线' : '离线'

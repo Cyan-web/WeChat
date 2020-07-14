@@ -2,8 +2,8 @@ import React, { FC, useEffect, useState } from 'react'
 import CheckIcon from '@material-ui/icons/Check'
 import CloseIcon from '@material-ui/icons/Close'
 
-import UserCell, { TooltipIcon } from './UserCell'
-import { OperationType_Undetermined } from './operationTypes'
+import UserCell, { TooltipIcon } from '../UserCell'
+import { OperationType_Undetermined } from '../operationTypes'
 import { api_awaitReply, api_agreeAddFriend, api_refuseAddFriend, Api_undetermined } from '../../../apis/friends'
 
 const UndeterminedOperation: FC<{ id: number }> = ({ id }) => {

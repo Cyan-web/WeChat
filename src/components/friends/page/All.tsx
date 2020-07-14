@@ -1,11 +1,12 @@
 import React, { FC, useState, useEffect } from 'react'
 
-import UserCell, { NormalOperation } from './UserCell'
+import NormalOperation from '../NormalOperation'
+import UserCell from '../UserCell'
 import { api_allFriends } from '../../../apis/friends'
-import { OperationType_All } from './operationTypes'
+import { OperationType_All } from '../operationTypes'
 
 const All: FC = () => {
-    const [ allFriends, setAllFriends ] = useState<ISearchUserInfoResponseData[]>([])
+    const [ allFriends, setAllFriends ] = useState<IUserBase[]>([])
 
     const getAllFriends = async () => {
         const data = await api_allFriends()
@@ -28,7 +29,7 @@ const All: FC = () => {
                             key={e.id}
                             {...e}
                         >
-                            <NormalOperation id={e.id} />
+                            <NormalOperation user={e} />
                         </UserCell>
                     )
                 })

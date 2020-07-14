@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import FriendsCommon from '../components/main/friends/FriendsCommon'
+import FriendsCommon from '../components/friends/page/FriendsCommon'
 import { dispatch_allFriends, dispatch_awaitReply } from '../store/friends/friends.dispatch'
 
 const mapStateToProps = (store: IStore) => {

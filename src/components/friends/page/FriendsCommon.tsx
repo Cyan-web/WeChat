@@ -1,22 +1,23 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useCallback, useEffect } from 'react'
 import CheckIcon from '@material-ui/icons/Check'
 import CloseIcon from '@material-ui/icons/Close'
 
-import UserCell, { TooltipIcon, NormalOperation } from './UserCell'
+import NormalOperation from '../NormalOperation'
+import UserCell, { TooltipIcon } from '../UserCell'
 import { api_agreeAddFriend, api_refuseAddFriend, Api_undetermined } from '../../../apis/friends'
 import {
     OperationType_All,
     OperationType_Online,
     OperationType_Undetermined,
     OperationType_Blocking
-} from './operationTypes'
+} from '../operationTypes'
 
 interface IFriendsPanelProps {
     type: OperationType_All | OperationType_Online | OperationType_Undetermined | OperationType_Blocking
     all: ISearchUserInfoResponseData[]
     awaitReply: ISearchUserInfoResponseData[]
-    dispatch_awaitReply: DispatchHandler
-    dispatch_allFriends: DispatchHandler
+    dispatch_awaitReply: IDispatchHandler
+    dispatch_allFriends: IDispatchHandler
 }
 
 const UndeterminedOperation: FC<{ id: number }> = ({ id }) => {
@@ -50,10 +51,18 @@ const FriendsCommon: FC<IFriendsPanelProps> = (
         dispatch_awaitReply
     }
 ) => {
+    const dispatchCallback = useCallback(() => ({ getAllFriends: dispatch_allFriends, getAwaitReply: dispatch_awaitReply }),
+        [ dispatch_allFriends, dispatch_awaitReply ])
+
+    const { getAllFriends, getAwaitReply } = dispatchCallback()
+
     useEffect(() => {
-        if (type === OperationType_Undetermined && !awaitReply.length) dispatch_awaitReply()
-        if ((type === OperationType_All || type === OperationType_Online) && !all.length) dispatch_allFriends()
-    }, [ type ])
+        if ((type === OperationType_All || type === OperationType_Online) && !all.length) getAllFriends()
+    }, [ type, all, getAllFriends ])
+
+    useEffect(() => {
+        if (type === OperationType_Undetermined && !awaitReply.length) getAwaitReply()
+    }, [ type, awaitReply, getAwaitReply ])
 
     let renderData: ISearchUserInfoResponseData[] = [],
         tipText = ''
@@ -91,7 +100,7 @@ const FriendsCommon: FC<IFriendsPanelProps> = (
                         {
                             type === OperationType_Undetermined
                                 ? <UndeterminedOperation id={e.id} />
-                                : <NormalOperation id={e.id} />
+                                : <NormalOperation user={e} />
                         }
                     </UserCell>
                 ))

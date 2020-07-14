@@ -48,6 +48,13 @@
         token = val
       }
       const socket = io(`http://localhost:9090?token=${token}`)
+      socket.on('unauthorized', data => {
+        console.log(data)
+      })
+      socket.on('socketErr', data => {
+        console.log(data)
+      })
+      socket.emit('test', '尼玛的')
     </script>
   </body>
 </html>

@@ -2,9 +2,9 @@ import React, { FC, useState } from 'react'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
 
 import Button from '../../public/Button'
-import UserCell, { TooltipIcon } from './UserCell'
+import UserCell, { TooltipIcon } from '../UserCell'
 import { api_addFriend, api_searchFriend } from '../../../apis/friends'
-import { OperationType_Add } from './operationTypes'
+import { OperationType_Add } from '../operationTypes'
 
 const AddOperation: FC<{ id: number }> = ({ id: addId }) => {
     const addFriend = async () => {

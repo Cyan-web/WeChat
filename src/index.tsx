@@ -8,10 +8,6 @@ import { store } from './store'
 import './assets/styles/index.scss'
 import * as serviceWorker from './serviceWorker'
 
-socket.on('serverSend', (data: any) => {
-    console.log(data)
-})
-
 ReactDOM.render(
     <Provider store={store}>
         <App/>

@@ -3,7 +3,7 @@
  * @waitReply 是否等待被添加好友
  * @blocking 是否被屏蔽
  * */
-interface ISearchUserInfoResponseData extends IUseBase {
+interface ISearchUserInfoResponseData extends IUserBase {
     waitReply: boolean
     blocking: boolean
 }
@@ -13,5 +13,5 @@ interface ISearchUserInfoResponseData extends IUseBase {
  * @addId 需要添加好友的 id
  * */
 interface IAddFriendApiParams {
-    addId: number
+    addId: IUserBase['id']
 }
