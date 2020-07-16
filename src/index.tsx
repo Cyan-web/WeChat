@@ -5,8 +5,11 @@ import 'normalize.css'
 
 import App from './App'
 import { store } from './store'
+import socket from './utils/socket'
 import './assets/styles/index.scss'
 import * as serviceWorker from './serviceWorker'
+
+socket()
 
 ReactDOM.render(
     <Provider store={store}>

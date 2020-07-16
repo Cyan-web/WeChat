@@ -16,8 +16,8 @@ interface IFriendsPanelProps {
     type: OperationType_All | OperationType_Online | OperationType_Undetermined | OperationType_Blocking
     all: ISearchUserInfoResponseData[]
     awaitReply: ISearchUserInfoResponseData[]
-    dispatch_awaitReply: IDispatchHandler
-    dispatch_allFriends: IDispatchHandler
+    dispatch_awaitReply: IDispatchHandler<undefined>
+    dispatch_allFriends: IDispatchHandler<undefined>
 }
 
 const UndeterminedOperation: FC<{ id: number }> = ({ id }) => {
@@ -58,11 +58,11 @@ const FriendsCommon: FC<IFriendsPanelProps> = (
 
     useEffect(() => {
         if ((type === OperationType_All || type === OperationType_Online) && !all.length) getAllFriends()
-    }, [ type, all, getAllFriends ])
+    }, [ type, getAllFriends ])
 
     useEffect(() => {
         if (type === OperationType_Undetermined && !awaitReply.length) getAwaitReply()
-    }, [ type, awaitReply, getAwaitReply ])
+    }, [ type, getAwaitReply ])
 
     let renderData: ISearchUserInfoResponseData[] = [],
         tipText = ''

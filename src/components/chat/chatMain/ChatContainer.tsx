@@ -1,13 +1,56 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useRef } from 'react'
+import { connect } from 'react-redux'
 
-import { ChatWith } from '../../../container/chat'
+import ChatItemContainer from './ChatItemContainer'
+// import { ChatWith } from '../../../container/chat'
 
-const ChatContainer: FC = () => {
+interface IChatContainerProps {
+    chatHistory: IChatHistory[]
+}
+
+const ChatContainer: FC<IChatContainerProps> = ({ chatHistory }) => {
+    const containerRef = useRef<null | HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (containerRef.current) {
+            containerRef.current.scrollTo({ top: containerRef.current.scrollHeight })
+        }
+    }, [ chatHistory ])
+
     return (
-        <div className="chatContainer pa-n3 flex-1">
-            <ChatWith/>
+        <div ref={containerRef} className="chatContainer hide-scroll pa-n3 flex-1">
+            {/*<ChatWith/>*/}
+
+            {
+                chatHistory.map(e => {
+                    return (
+                        <ChatItemContainer
+                            key={e.id}
+                            {...e}
+                        />
+                    )
+                })
+            }
         </div>
     )
 }
 
-export default ChatContainer
+const mapStateToProps = (store: IStore) => {
+    const {
+        chat: {
+            currentTalker,
+            chatHistory
+        },
+        user: {
+            userInfo: {
+                id
+            }
+        }
+    } = store
+
+    const chat_id = [ id, currentTalker.id ].sort().join('_')
+
+    return { chatHistory: chatHistory[chat_id] || [] }
+}
+
+export default connect(mapStateToProps)(ChatContainer)

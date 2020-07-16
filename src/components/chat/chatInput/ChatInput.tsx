@@ -7,17 +7,22 @@ import { InputChangeHandler, InputKeyDownHandler } from '../../../modules/handle
 const ChatInput: FC<IChatContainerProps> = ({ currentTalker }) => {
     const [ content, setContent ] = useState<IChatHistory['content']>('')
 
-    const _onInput: InputChangeHandler = event => {
+    const _onChange: InputChangeHandler = event => {
         setContent(event.currentTarget.value)
     }
 
     const sendMsg = () => {
+        if (!content) {
+            console.log('没有内容')
+            return
+        }
         if (currentTalker && 'id' in currentTalker) {
             const { id } = currentTalker
             socket.emit('sendMsg', {
                 currentTalkUserId: id,
                 content
             })
+            setContent('')
         }
     }
 
@@ -30,8 +35,8 @@ const ChatInput: FC<IChatContainerProps> = ({ currentTalker }) => {
             <div className="chatInput">
                 <input
                     placeholder="发送消息"
-                    defaultValue={content}
-                    onInput={_onInput}
+                    value={content}
+                    onChange={_onChange}
                     onKeyDown={_onKeyDown}
                 />
 

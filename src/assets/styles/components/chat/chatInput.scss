@@ -1,5 +1,7 @@
 .chatInputBg {
     background: $color_3;
+    min-width: 300px;
+    overflow: hidden;
 
     @extend .pa-n3;
 }

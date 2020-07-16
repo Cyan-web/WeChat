@@ -1,8 +1,13 @@
 import axios from './axios.interceptors'
 
+type METHOD_POST = 'post'
+export const METHOD_POST: METHOD_POST = 'post'
+type METHOD_GET = 'get'
+export const METHOD_GET: METHOD_GET = 'get'
+
 interface IFetchParams {
     url: string
-    method?: 'post' | 'get'
+    method?: METHOD_POST | METHOD_GET
     params?: any
 }
 

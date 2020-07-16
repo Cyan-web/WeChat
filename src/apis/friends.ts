@@ -1,4 +1,4 @@
-import { fetch } from '../utils/axios'
+import { fetch, METHOD_GET } from '../utils/axios'
 
 const API_BASE_FRIEND = '/friends'
 
@@ -9,7 +9,7 @@ export const api_searchFriend = (params: { search: string }) => fetch<ISearchUse
 export const api_addFriend = (params: IAddFriendApiParams) => fetch<null>({ url: API_BASE_FRIEND + '/addFriend', params })
 
 // 待办
-export const api_awaitReply = () => fetch<ISearchUserInfoResponseData[]>({ url: API_BASE_FRIEND + '/awaitReply', method: 'get' })
+export const api_awaitReply = () => fetch<ISearchUserInfoResponseData[]>({ url: API_BASE_FRIEND + '/awaitReply', method: METHOD_GET })
 
 export type Api_undetermined = (params: { id: number }) => Promise<void>
 
@@ -20,7 +20,7 @@ export const api_agreeAddFriend: Api_undetermined = (params) => fetch({ url: API
 export const api_refuseAddFriend: Api_undetermined = (params) => fetch({ url: API_BASE_FRIEND + '/refuse', params })
 
 // 所有好友
-export const api_allFriends = () => fetch<IUserBase[]>({ url: API_BASE_FRIEND + '/all', method: 'get' })
+export const api_allFriends = () => fetch<IUserBase[]>({ url: API_BASE_FRIEND + '/all', method: METHOD_GET })
 
 // 在线列表
 // export const api_onlineFriends = () => fetch<ISearchUserInfoResponseData[]>({ url: API_BASE_FRIEND + '/online', method: 'get' })

@@ -6,7 +6,7 @@
 interface IChatStore {
     currentTalker: IUserBase
     chatHistory: {
-        [IChatHistory['chat_id']]: IChatHistory[]
+        [key: string]: IChatHistory[]
     }
 }
 
@@ -18,6 +18,7 @@ interface IChatStore {
  * @create_time 创建时间
  * */
 interface IChatHistory {
+    id: number
     chat_id: string
     sender: IUserBase['id']
     receiver: IUserBase['id']

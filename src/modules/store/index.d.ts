@@ -4,4 +4,4 @@ interface IStore {
     chat: IChatStore
 }
 
-type IDispatchHandler = () => void
+type IDispatchHandler<T> = (props?: T) => void
