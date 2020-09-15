@@ -1,29 +1,31 @@
-import React, { ComponentClass, FunctionComponent, FC, createElement } from 'react'
+import React, { FC, ReactNode } from 'react'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 
 interface IPrivateChannelBlock extends RouteComponentProps {
-    avatar: string | FunctionComponent | ComponentClass
+    avatar?: string | ReactNode
     title: string
     link: string
+    callback?: () => void
     close?: () => void
 }
 
 const PrivateChannelBlock: FC<IPrivateChannelBlock> = (
     {
-        history: { push },
+        history: { replace },
         avatar,
         title,
         link,
-        close
+        callback
     }
 ) => {
     const routerToFriends = () => {
-        push(link)
+        replace(link)
+        callback && callback()
     }
 
     return (
-        <div className="privateChannel-block" onClick={routerToFriends}>
-            {createElement(avatar)}
+        <div className="privateChannel-block mb-n1" onClick={routerToFriends}>
+            {avatar}
             <span className="ml-n2">{title}</span>
         </div>
     )

@@ -11,6 +11,7 @@ import { dispatch_setCurrentTalker, Dispatch_setCurrentTalker } from '../../stor
 import { TooltipIcon } from './UserCell'
 
 interface INormalOperationProps {
+    type: OperationTypes
     user: IUserBase
     dispatch_setCurrentTalker: Dispatch_setCurrentTalker
 }

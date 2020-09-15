@@ -8,6 +8,7 @@ interface IChatStore {
     chatHistory: {
         [key: string]: IChatHistory[]
     }
+    chatList: IUserBase[]
 }
 
 /**

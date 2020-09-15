@@ -82,7 +82,7 @@ const FriendsCommon: FC<IFriendsPanelProps> = (
             break
         case OperationType_Blocking:
             renderData = all.filter(e => e.blocking)
-            tipText = `已屏蔽 - ${awaitReply.length}`
+            tipText = `已屏蔽 - ${renderData.length}`
             break
     }
 
@@ -100,7 +100,7 @@ const FriendsCommon: FC<IFriendsPanelProps> = (
                         {
                             type === OperationType_Undetermined
                                 ? <UndeterminedOperation id={e.id} />
-                                : <NormalOperation user={e} />
+                                : <NormalOperation type={type} user={e} />
                         }
                     </UserCell>
                 ))

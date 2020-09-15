@@ -13,7 +13,7 @@ interface IChatProps {
 const Chat: FC<IChatProps> = ({ dispatch_getChatHistory }) => {
     useEffect(() => {
         dispatch_getChatHistory()
-    }, [])
+    })
 
     return (
         <div className="chat d-flex flex-column flex-1">

@@ -18,7 +18,7 @@ export default (state = initialState, action: AnyAction) => {
             const { chat_id, history } = action.payload as IChatHistoryResponseData
             const oldHistory = state.chatHistory[chat_id] || []
             const newHistory = action.type === SET_RECEIVE_MSG ? history : [ ...oldHistory, ...history ]
-            return { ...state, chatHistory: { [chat_id]: newHistory } }
+            return { ...state, chatHistory: { ...state.chatHistory, [chat_id]: newHistory } }
         default:
             return state
     }

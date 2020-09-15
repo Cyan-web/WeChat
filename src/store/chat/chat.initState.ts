@@ -11,5 +11,6 @@ const chatHistory: IChatStore['chatHistory'] = {}
 
 export default {
     currentTalker,
-    chatHistory
+    chatHistory,
+    chatList: []
 }

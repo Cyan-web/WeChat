@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { Route, Redirect, Switch, RouteComponentProps } from 'react-router-dom'
 
 import PrivateChannel from '../../components/privateChannel/PrivateChannel'
